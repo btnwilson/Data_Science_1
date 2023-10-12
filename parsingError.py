@@ -12,3 +12,5 @@ def load_report(filename):
 data_centers = {}
 for file in os.listdir('reports/'):
     data_centers[file.strip('.dat')] = load_report("reports/000000.dat") 
+print('Files in Reports Directory:'.format(), len(os.listdir('reports/')))
+print('Size of the Data Centers Dictionary:'.format(), len(data_centers))
