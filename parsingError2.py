@@ -10,6 +10,11 @@ def load_report(filename):
         if ':' in line and "AUTOMATED REPORT PERIOD" not in line and "OPERATION NOTES" not in line:
             segments = line.split(':')
             error_modes[segments[0].strip()] = int(segments[1].strip())
+
+        if any(value < 0 for value in error_modes.values()):
+        file.close()
+        raise ValueError("Error: Subdictionary contains negative values")
+        
     file.close()
     return error_modes      
 # Dictionary to store data center reports
