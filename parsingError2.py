@@ -1,6 +1,8 @@
 import os 
 import matplotlib.pyplot as plt
 import numpy as np
+
+# Function to load data from a report file
 def load_report(filename):
     file = open(filename, 'r')
     error_modes = {}
@@ -10,14 +12,19 @@ def load_report(filename):
             error_modes[segments[0].strip()] = int(segments[1].strip())
     file.close()
     return error_modes      
-
+# Dictionary to store data center reports
 data_centers = {}
+
+# Read data from report files and store it in data_centers
 for file in os.listdir('reports/'):
     data_centers[file.strip('.dat')] = load_report('reports/' + file)  
 # %%
 
+# Calculate total error counts for each data center
 data_center_total_error = {}
 abnormal_tag = []
+
+# Loop through data centers
 for key in data_centers.keys():
     if len(key) != 6 or not key.isdigit():
         abnormal_tag.append(key)
